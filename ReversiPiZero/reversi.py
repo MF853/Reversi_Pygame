@@ -167,15 +167,6 @@ def update_score():
     player2_score = sum(row.count(2) for row in board)
     return player1_score, player2_score
 
-
-def display_winner(winner):
-    font = pygame.font.Font(None, 72)
-    text = font.render(f"Player {winner} wins!", True, YELLOW)
-    screen.blit(text, (screen_width // 2, screen_height // 2))
-    pygame.display.flip()
-    pygame.time.wait(3000)
-
-
 def get_valid_moves():
     valid_moves = set()
     for i in range(GRID_SIZE):
