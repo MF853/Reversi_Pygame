@@ -60,19 +60,23 @@ class SoundController:
     def play_bg(self):
         if self.music_playing:
             return
-        
+       
         bg_k = list(self.audios.keys())[-1]
 
         self.audios[bg_k].stop()
 
         bg = list(self.audio_paths.values())[self.current_bg]
-        self.audios[bg_k] = self.loadAudio(bg)
+        loaded_audio = self.loadAudio(bg)
+        if loaded_audio is not None:
+            self.audios[bg_k] = loaded_audio
 
-        if self.status == AUDIO_STATUS.IDLE:
-            a = self.audios[bg_k].play(loops=-1)
-            a.set_volume(.1)
+            if self.status == AUDIO_STATUS.IDLE:
+                a = self.audios[bg_k].play(loops=-1)
+                a.set_volume(.1)
 
-            self.music_playing = True
+                self.music_playing = True
+        else:
+            print("Failed to load background music:", bg)
         
     def toggle_mute(self):
         for audio in self.audios:

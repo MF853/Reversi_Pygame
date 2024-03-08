@@ -220,8 +220,8 @@ class Peg:
 
         # Resize images to match the size of the circles
         circle_radius = min(self.size[0], self.size[1]) // 2
-        self.player1_image = pygame.transform.smoothscale(self.player1_image, (circle_radius * 2, circle_radius * 2))
-        self.player2_image = pygame.transform.smoothscale(self.player2_image, (circle_radius * 2, circle_radius * 2))
+        self.player1_image = pygame.transform.smoothscale(self.player1_image, (int(circle_radius * 2), int(circle_radius * 2)))
+        self.player2_image = pygame.transform.smoothscale(self.player2_image, (int(circle_radius * 2), int(circle_radius * 2)))
 
     def draw(self, surface, position, expected_child, is_valid, current_player):
         row, col = position[0], position[1]
